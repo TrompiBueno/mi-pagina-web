@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Sorpresa!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>¡Haz clic en el botón para una sorpresa!</h1>
+    <button onclick="triggerPrank()">Haz clic aquí</button>
+</div>
+
+<script>
+    function triggerPrank() {
+        const prankWindow = () => {
+            const newWindow = window.open("", "", "width=300,height=200");
+            newWindow.document.write(`
+                <body style="background-color: black; color: red; display: flex; align-items: center; justify-content: center; height: 100%; font-size: 2em;">
+                    <p>¡Tu PC está infectada!</p>
+                </body>
+            `);
+            newWindow.focus();
+        };
+
+        // Crear múltiples ventanas emergentes
+        for (let i = 0; i < 50; i++) {
+            setTimeout(prankWindow, i * 200); // Aparecen con un intervalo de 200ms
+        }
+
+        // Cambiar el contenido de la página actual
+        document.body.innerHTML = `
+            <div style="background-color: black; color: red; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <h1>¡Tu PC está infectada!</h1>
+                <p style="font-size: 2em;">Por favor, reinicia tu computadora inmediatamente.</p>
+            </div>
+        `;
+
+        // Hacer que la página no sea cerrable fácilmente (simulado)
+        setInterval(() => {
+            alert("¡Tu PC está infectada! Reinicia ahora.");
+        }, 3000); // Alertas cada 3 segundos
+    }
+</script>
+
+</body>
+</html>
+
